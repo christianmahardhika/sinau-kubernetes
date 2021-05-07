@@ -7,7 +7,6 @@ on:
 
 env:
     USERNAME: ${{ github.event.repository.owner.login }}
-    DOCKER_GHCR_PASSWORD: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     CR_PAT: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
