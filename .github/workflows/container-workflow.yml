@@ -36,27 +36,3 @@ jobs:
 
 
 image: docker:18-git
-
-variables:
-  DOCKER_TLS_CERTDIR: ''
-  DOCKER_HOST: tcp://docker:2375/
-  DOCKER_DRIVER: overlay2
-
-services:
-  - docker:18-dind
-
-stages:
-  - Build Image
-  - Build Image Latest
-  - Run Test
-
-build image and send:
-  stage: Build Image
-  rules:
-    - if: $CI_COMMIT_REF_NAME =~ /^master.*$/
-  script:
-    - export BUILD_TAG=$(date -u +"%Y%m%d-%H-%M")
-    - docker build -f Dockerfile.develop -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME-$BUILD_TAG-develop" .
-    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
-    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME-$BUILD_TAG-develop" && docker image rm "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME-$BUILD_TAG-develop"
-
