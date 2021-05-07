@@ -6,7 +6,7 @@ on:
       - '*'
 
 env:
-    USERNAME: ${{ github.event.repository.owner.login }}
+    USERNAME: ${{ github.actor }}
     CR_PAT: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
