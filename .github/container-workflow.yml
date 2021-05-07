@@ -1,0 +1,61 @@
+on:
+  push:
+    branch:
+      - '!master'
+    tags:
+      - '*'
+
+env:
+    USERNAME: ${{ github.event.repository.owner.login }}
+    DOCKER_GHCR_PASSWORD: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    CR_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Branch name
+        id: branch_name
+        run: |
+          echo ::set-output name=SOURCE_NAME::${GITHUB_REF#refs/*/}
+          echo ::set-output name=SOURCE_BRANCH::${GITHUB_REF#refs/heads/}
+          echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
+      - name: Login GHCR
+        run: echo $CR_PAT | docker login ghcr.io -u $USERNAME --password-stdin
+      - name: Docker Build Image tags
+        run: docker build -f dockerfile -t "$GITHUB_REPOSITORY:${{ steps.branch_name.outputs.SOURCE_TAG }}" .
+      - name: Push to ghcr.io tags
+        run: docker push ghcr.io/$GITHUB_REPOSITORY:${{ steps.branch_name.outputs.SOURCE_TAG }}
+      - name: Docker Build Image Latest
+        run: docker build -f dockerfile -t "$GITHUB_REPOSITORY:latest" .
+      - name: Push to ghcr.io latest
+        run: docker push ghcr.io/$GITHUB_REPOSITORY:latest
+
+
+image: docker:18-git
+
+variables:
+  DOCKER_TLS_CERTDIR: ''
+  DOCKER_HOST: tcp://docker:2375/
+  DOCKER_DRIVER: overlay2
+
+services:
+  - docker:18-dind
+
+stages:
+  - Build Image
+  - Build Image Latest
+  - Run Test
+
+build image and send:
+  stage: Build Image
+  rules:
+    - if: $CI_COMMIT_REF_NAME =~ /^master.*$/
+  script:
+    - export BUILD_TAG=$(date -u +"%Y%m%d-%H-%M")
+    - docker build -f Dockerfile.develop -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME-$BUILD_TAG-develop" .
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME-$BUILD_TAG-develop" && docker image rm "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME-$BUILD_TAG-develop"
+
