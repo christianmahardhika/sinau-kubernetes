@@ -1,5 +1,4 @@
-# Replication Controller
-
+# Deployment
 
 ## Pengenalan
 
