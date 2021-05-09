@@ -22,5 +22,12 @@ Kubernetes adalah platform atau sistem *opensource* yang berfungsi untuk men*dep
 
 
 ## **Daftar Isi**
+
+**Pre Face**
+
 Install Minikube!
 [Install Minikube](https://github.com/christianmahardhika/sinau-kubernetes/tree/main/0-Install-Minikube)
+Kubernetes Architecture!
+[Install Minikube](https://github.com/christianmahardhika/sinau-kubernetes/tree/main/0-Install-Minikube)
+
+**Basic Kubernetes**
