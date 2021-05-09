@@ -5,7 +5,11 @@ Untuk mulai belajar, sebelumnya kita harus *install* dulu kubernetesnya. (*Yakal
 
 Disini kita pake minikube (*yang gampang muehehehehehe...*)
 
-**Install di Linux**:
+<br />
+<br />
+<br />
+
+## **Install di Linux**:
 
 *Copas* perintah ini ya... :point_down:
 
@@ -31,8 +35,11 @@ Jika berhasil, dia akan muncul perintah seperti ini
 
 ![Success Install](./doc-image/successinstall.png)
 
+<br />
+<br />
+<br />
 
-**Install di Windows**:
+## **Install di Windows**:
 
 Download aplikasinya disini Install Minikube! :point_right:
 [Install Minikube](https://storage.googleapis.com/minikube/releases/latest/minikube-installer.exe) 
@@ -54,7 +61,11 @@ Jika berhasil, dia akan muncul perintah seperti ini
 
 ![Success Install](./doc-image/successinstall.png)
 
-**Install di MacOS**:
+<br />
+<br />
+<br />
+
+## **Install di MacOS**:
 
 *Copas* perintah ini ya... :point_down:
 
@@ -79,8 +90,15 @@ Jika berhasil, dia akan muncul perintah seperti ini
 
 ![Success Install](./doc-image/successinstall.png)
 
+<br />
+<br />
+<br />
 
 *TADAAA.... Kita sudah berhasil install Minikube di mesin kita* :fire: :+1: :sparkles: 🚀 🎺
+
+<br />
+<br />
+<br />
 
 ## *Referensi*
 > https://minikube.sigs.k8s.io/docs/start/
