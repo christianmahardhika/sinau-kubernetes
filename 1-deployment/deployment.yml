@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: helloworld
+  template:
+    metadata:
+      labels:
+        app: helloworld
+    spec:
+      containers:
+      - name: golang-hello-world
+        image: ghcr.io/christianmahardhika/sinau-kubernetes:latest
+        ports:
+        - name: golang-port
+          containerPort: 8080
