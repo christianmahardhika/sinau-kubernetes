@@ -60,7 +60,9 @@ Nah... *container* ini harus ada yg *memanage* biar dia ga ada *downtime* dan ap
 >**Pre Face**
 >
 > Install Minikube!
->[Install Minikube](https://github.com/christianmahardhika/sinau-kubernetes/tree/main/0-Install-Minikube)
+>[Install Minikube](https://github.com/christianmahardhika/sinau-kubernetes/tree/main/0-1-Install-Minikube)
+> Kubernetes Component!
+>[Kubernetes Component](https://github.com/christianmahardhika/sinau-kubernetes/tree/main/0-2-kubernetes-component)
 >
 > Kubernetes Architecture!
 >[Kubernetes Architecture](https://github.com/christianmahardhika/sinau-kubernetes/tree/main/0-Install-Minikube)
