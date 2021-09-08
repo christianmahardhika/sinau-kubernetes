@@ -15,7 +15,7 @@ kubectl create namespace flux
 ## Generate Flux manifest files
 
 ```
-fluxctl install --git-user=christianmahardhika --git-email=christianmahardhika@users.noreply.github.com --git-url=git@github.com:christianmahardhika/sinau-kubernetes --git-path=2-fluxcd/deployments --git-branch=main --namespace=flux > flux.yaml
+fluxctl install --git-user=christianmahardhika --git-email=christianmahardhika@users.noreply.github.com --git-url=git@github.com:christianmahardhika/sinau-kubernetes --git-path=2-fluxcd/deployments,2-fluxcd/namespaces --git-branch=main --namespace=flux > flux.yaml
 ```
 
 ## Apply manifest files
