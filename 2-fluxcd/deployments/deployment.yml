@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-deployment
+  labels:
+    app: helloworld
+    test: test
+  annotations:
+    fluxcd.io/automated: 'true'
+    fluxcd.io/tag.docker-nodejs-demo: semver:~1.0.0
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: helloworld
+  template:
+    metadata:
+      labels:
+        app: helloworld
+    spec:
+      containers:
+        - name: golang-hello-world
+          image: ghcr.io/christianmahardhika/sinau-kubernetes:1.0.0
+          imagePullPolicy: Always
+          ports:
+            - name: golang-port
+              containerPort: 8080
